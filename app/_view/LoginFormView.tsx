@@ -1,4 +1,7 @@
 import Link from "next/link";
+import GoogleIcon from "@/public/icons/google.svg";
+import KeyIcon from "@/public/icons/key.svg";
+import LoginButton from "../_components/LoginButton";
 
 export default function LoginFormView() {
   return (
@@ -13,24 +16,28 @@ export default function LoginFormView() {
       </div>
       <div className="w-full flex flex-col justify-center items-center gap-6">
         <div className="w-full flex flex-col justify-center items-center gap-4">
-          <Link href={""} className="w-full">
-            <div className="w-full px-6 py-4 bg-zinc-200 dark:bg-zinc-800 rounded-2xl justify-center items-center gap-2.5">
-              <p className="text-center text-black dark:text-white text-sm">
-                Google로 로그인
-              </p>
-            </div>
-          </Link>
-          <Link href={""} className="w-full">
-            <div className="w-full px-6 py-4 bg-zinc-200 dark:bg-zinc-800 rounded-2xl justify-center items-center gap-2.5">
-              <p className="text-center text-black dark:text-white text-sm">
-                Key로 로그인
-              </p>
-            </div>
-          </Link>
+          <LoginButton
+            href=""
+            icon={<GoogleIcon width={32} height={32} />}
+            text="Google로 로그인"
+          />
+          <LoginButton
+            href=""
+            icon={
+              <KeyIcon
+                width={32}
+                height={32}
+                className="text-black dark:text-white"
+              />
+            }
+            text="Key로 로그인"
+          />
         </div>
-        <p className="text-center text-zinc-500 text-xs">
-          로그인이 정상적으로 안되시나요?
-        </p>
+        <Link href={""} className="w-full">
+          <p className="text-center text-zinc-500 text-xs hover:underline">
+            로그인이 정상적으로 안되시나요?
+          </p>
+        </Link>
       </div>
     </div>
   );
