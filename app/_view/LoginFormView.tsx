@@ -14,7 +14,7 @@ export default function LoginFormView() {
           미래형 기숙사 관리 시스템
         </p>
       </div>
-      <div className="w-full flex flex-col justify-center items-center gap-6">
+      <div className="w-full max-w-md flex flex-col justify-center items-center gap-6">
         <div className="w-full flex flex-col justify-center items-center gap-4">
           <LoginButton
             href=""
