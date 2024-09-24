@@ -1,9 +1,9 @@
-import LoginFunnelView from "./_view/LoginFunnelView";
+import LoginFormView from "./_view/LoginFormView";
 
 export default function Home() {
   return (
     <main className="flex flex-row h-screen">
-      <LoginFunnelView />
+      <LoginFormView />
     </main>
   );
 }

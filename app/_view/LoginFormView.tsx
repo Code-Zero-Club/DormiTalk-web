@@ -1,0 +1,44 @@
+import Link from "next/link";
+import GoogleIcon from "@/public/icons/google.svg";
+import KeyIcon from "@/public/icons/key.svg";
+import LoginButton from "../_components/LoginButton";
+
+export default function LoginFormView() {
+  return (
+    <div className="w-full h-full flex px-5 pt-32 pb-9 bg-zinc-50 dark:bg-zinc-950 flex-col justify-between items-center">
+      <div className="flex flex-col justify-center items-center gap-1">
+        <h1 className="text-center text-neutral-950 dark:text-neutral-50 text-4xl logo-font">
+          도미톡!
+        </h1>
+        <p className="text-center text-zinc-500 text-sm">
+          미래형 기숙사 관리 시스템
+        </p>
+      </div>
+      <div className="w-full max-w-md flex flex-col justify-center items-center gap-6">
+        <div className="w-full flex flex-col justify-center items-center gap-4">
+          <LoginButton
+            href=""
+            icon={<GoogleIcon width={32} height={32} />}
+            text="Google로 로그인"
+          />
+          <LoginButton
+            href=""
+            icon={
+              <KeyIcon
+                width={32}
+                height={32}
+                className="text-black dark:text-white"
+              />
+            }
+            text="Key로 로그인"
+          />
+        </div>
+        <Link href={""} className="w-full">
+          <p className="text-center text-zinc-500 text-xs hover:underline">
+            로그인이 정상적으로 안되시나요?
+          </p>
+        </Link>
+      </div>
+    </div>
+  );
+}
