@@ -1,9 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import GoogleIcon from "@/public/icons/google.svg";
 import KeyIcon from "@/public/icons/key.svg";
 import LoginButton from "../_components/LoginButton";
+import KeyLoginModal from "../_components/KeyLoginModal";
 
 export default function LoginFormView() {
+  const [isKeyLoginModalOpen, setIsKeyLoginModalOpen] = useState(false);
+
+  const handleKeyLoginClick = () => {
+    setIsKeyLoginModalOpen(true);
+  };
+
   return (
     <div className="w-full h-full flex px-5 pt-32 pb-9 bg-zinc-50 dark:bg-zinc-950 flex-col justify-between items-center">
       <div className="flex flex-col justify-center items-center gap-1">
@@ -17,12 +27,12 @@ export default function LoginFormView() {
       <div className="w-full max-w-md flex flex-col justify-center items-center gap-6">
         <div className="w-full flex flex-col justify-center items-center gap-4">
           <LoginButton
-            href=""
+            href="/api/auth/google"
             icon={<GoogleIcon width={32} height={32} />}
             text="Google로 로그인"
           />
           <LoginButton
-            href=""
+            onClick={handleKeyLoginClick}
             icon={
               <KeyIcon
                 width={32}
@@ -39,6 +49,10 @@ export default function LoginFormView() {
           </p>
         </Link>
       </div>
+      <KeyLoginModal
+        isOpen={isKeyLoginModalOpen}
+        onClose={() => setIsKeyLoginModalOpen(false)}
+      />
     </div>
   );
 }
