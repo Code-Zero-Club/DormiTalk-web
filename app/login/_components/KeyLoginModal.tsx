@@ -10,6 +10,7 @@ export default function KeyLoginModal({ isOpen, onClose }: KeyLoginModalProps) {
   const [key, setKey] = useState("");
   const [isRendered, setIsRendered] = useState(false);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -81,18 +82,25 @@ export default function KeyLoginModal({ isOpen, onClose }: KeyLoginModalProps) {
                   </p>
                 </div>
                 <div className="flex flex-col justify-start items-start gap-3">
-                  <p className="text-zinc-400 dark:text-zinc-500 text-base">
+                  <p
+                    className={`text-base transition-colors ${
+                      isFocused
+                        ? "text-black dark:text-white"
+                        : "text-zinc-400 dark:text-zinc-500"
+                    }`}
+                  >
                     로그인 키
                   </p>
                   <input
                     type="password"
                     value={key}
                     onChange={(e) => setKey(e.target.value)}
-                    className="w-full h-12 relative bg-transparent focus:outline-none border-b border-zinc-300 dark:border-zinc-500 text-black dark:text-white"
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    className="w-full h-12 relative bg-transparent focus:outline-none border-b border-zinc-300 dark:border-zinc-500 text-black dark:text-white focus:border-black dark:focus:border-white transition ease-linear"
                   />
                 </div>
               </div>
-
               <button
                 type="submit"
                 className="py-4 bg-zinc-900 dark:bg-zinc-100 rounded-2xl justify-center items-center text-white dark:text-black text-lg font-medium"
