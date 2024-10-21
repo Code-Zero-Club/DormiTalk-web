@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HiHome, HiMusicNote, HiCalendar, HiAdjustments } from "react-icons/hi";
-import { IconType } from "react-icons";
+import { Home2, Musicnote, Timer1, Setting2 } from "iconsax-react";
+import { IconProps } from "iconsax-react";
 
 interface NavLinkProps {
   href: string;
-  icon: IconType;
+  icon: React.ComponentType<IconProps>;
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon }) => {
@@ -25,7 +25,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon }) => {
             : "text-zinc-400 dark:text-zinc-500"
         }`}
     >
-      <Icon size={32} />
+      <Icon size={24} variant="Bold" />
     </Link>
   );
 };
@@ -38,10 +38,10 @@ const Nav: React.FC = () => {
       shadow-[0_-2px_4px_-1px_rgba(0,0,0,0.06),0_-1px_2px_-1px_rgba(0,0,0,0.06)]
       dark:shadow-[0_-2px_4px_-1px_rgba(200,200,200,0.06),0_-1px_2px_-1px_rgba(200,200,200,0.06)]"
     >
-      <NavLink href="/" icon={HiHome} />
-      <NavLink href="/playlist" icon={HiMusicNote} />
-      <NavLink href="/scheduler" icon={HiCalendar} />
-      <NavLink href="/setting" icon={HiAdjustments} />
+      <NavLink href="/" icon={Home2} />
+      <NavLink href="/playlist" icon={Musicnote} />
+      <NavLink href="/scheduler" icon={Timer1} />
+      <NavLink href="/setting" icon={Setting2} />
     </nav>
   );
 };
