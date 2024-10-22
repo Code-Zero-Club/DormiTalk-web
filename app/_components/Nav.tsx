@@ -17,27 +17,21 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon }) => {
   return (
     <Link
       href={href}
-      className={`transition-colors duration-200 ease-in-out 
-        hover:text-zinc-600 dark:hover:text-zinc-300
+      className={`px-6 transition-colors duration-200 ease-in-out 
         ${
           isActive
             ? "text-zinc-800 dark:text-zinc-100"
-            : "text-zinc-400 dark:text-zinc-500"
+            : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300"
         }`}
     >
-      <Icon size={24} variant="Bold" />
+      <Icon size={24} variant={isActive ? "Bold" : "Outline"} />
     </Link>
   );
 };
 
 const Nav: React.FC = () => {
   return (
-    <nav
-      className="flex flex-row px-5 py-4 justify-between rounded-tl-3xl rounded-tr-3xl 
-      bg-white dark:bg-zinc-950
-      shadow-[0_-2px_4px_-1px_rgba(0,0,0,0.06),0_-1px_2px_-1px_rgba(0,0,0,0.06)]
-      dark:shadow-[0_-2px_4px_-1px_rgba(200,200,200,0.06),0_-1px_2px_-1px_rgba(200,200,200,0.06)]"
-    >
+    <nav className="h-16 bg-white justify-between items-center inline-flex">
       <NavLink href="/" icon={Home2} />
       <NavLink href="/playlist" icon={Musicnote} />
       <NavLink href="/scheduler" icon={Timer1} />
