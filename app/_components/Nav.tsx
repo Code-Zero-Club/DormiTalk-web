@@ -17,7 +17,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon }) => {
   return (
     <Link
       href={href}
-      className={`px-6 transition-colors duration-200 ease-in-out 
+      className={`px-6 flex flex-col items-center gap-1.5 transition-colors duration-200 ease-in-out
         ${
           isActive
             ? "text-zinc-800 dark:text-zinc-100"
@@ -25,6 +25,9 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon }) => {
         }`}
     >
       <Icon size={24} variant={isActive ? "Bold" : "Outline"} />
+      {isActive && (
+        <div className="w-1 h-1 bg-zinc-800 dark:bg-zinc-100 rounded-full" />
+      )}
     </Link>
   );
 };
