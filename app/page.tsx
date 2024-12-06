@@ -1,7 +1,5 @@
 export default function Home() {
   return (
-    <main className="flex flex-row h-screen">
-      <div>asd</div>
-    </main>
+    <main className="h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col justify-between"></main>
   );
 }

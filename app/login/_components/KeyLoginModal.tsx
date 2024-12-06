@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LuArrowLeft } from "react-icons/lu";
+import { ArrowLeft } from "iconsax-react";
 
 interface KeyLoginModalProps {
   isOpen: boolean;
@@ -64,7 +64,7 @@ export default function KeyLoginModal({ isOpen, onClose }: KeyLoginModalProps) {
             className="text-zinc-400"
             aria-label="Close modal"
           >
-            <LuArrowLeft size={24} />
+            <ArrowLeft size={24} />
           </button>
         </div>
         <div className="h-full px-5 pt-4 pb-5">

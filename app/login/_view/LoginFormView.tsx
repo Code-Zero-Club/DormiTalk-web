@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import GoogleIcon from "@/public/icons/google.svg";
 import KeyIcon from "@/public/icons/key.svg";
+import Logo from "@/public/images/Logo.svg";
 import LoginButton from "../_components/LoginButton";
 import KeyLoginModal from "../_components/KeyLoginModal";
 
@@ -17,6 +18,11 @@ export default function LoginFormView() {
   return (
     <div className="w-full h-full flex px-5 pt-32 pb-9 bg-zinc-50 dark:bg-zinc-950 flex-col justify-between items-center">
       <div className="flex flex-col justify-center items-center gap-1">
+        <Logo
+          width={64}
+          height={64}
+          className="text-zinc-950 dark:text-zinc-50 mb-2"
+        />
         <h1 className="text-center text-neutral-950 dark:text-neutral-50 text-4xl logo-font">
           도미톡!
         </h1>

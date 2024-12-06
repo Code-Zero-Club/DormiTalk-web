@@ -18,3 +18,24 @@
     text-wrap: balance;
   }
 }
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 60px; /* Adjust based on actual header height */
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 60px; /* Adjust based on actual nav height */
+}
+
+.content-container {
+  padding-top: 60px; /* Match header height */
+  padding-bottom: 60px; /* Match nav height */
+}
