@@ -15,6 +15,9 @@ function InfoRow({ label, value }: InfoRowProps) {
 }
 
 export default function AppInfo() {
+  const buildTime =
+    process.env.NEXT_PUBLIC_BUILD_TIME || new Date().toISOString();
+
   return (
     <SettingSection
       title="애플리케이션 정보"
@@ -27,7 +30,7 @@ export default function AppInfo() {
       <InfoRow label="Client 개발" value="김태현" />
       <InfoRow label="UI/UX 디자인" value="김태현, 이종현" />
       <div className="w-full h-px bg-zinc-800" />
-      <InfoRow label="빌드 버전" value="2024-11-24:fb29de" />
+      <InfoRow label="빌드 버전" value={buildTime} />
     </SettingSection>
   );
 }
