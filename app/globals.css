@@ -37,5 +37,6 @@
 
 .content-container {
   padding-top: 60px; /* Match header height */
-  padding-bottom: 60px; /* Match nav height */
+  padding-bottom: 64px; /* Match nav height */
+  height: 100%;
 }

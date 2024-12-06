@@ -6,7 +6,7 @@ interface HeaderProps {
 
 export default function Header({ title }: HeaderProps) {
   return (
-    <div className="header flex flex-row px-5 py-3 bg-zinc-50 dark:bg-zinc-950 gap-2 items-center">
+    <div className="absolute top-0 left-0 right-0 flex flex-row px-5 py-3 bg-zinc-50 dark:bg-zinc-950 gap-2 items-center">
       <Logo
         width={32}
         height={32}

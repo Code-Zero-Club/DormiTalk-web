@@ -1,8 +1,8 @@
 import LoginFormView from "./_view/LoginFormView";
 
-export default function Home() {
+export default function LoginPage() {
   return (
-    <main className="flex flex-row h-screen">
+    <main className="w-full h-full">
       <LoginFormView />
     </main>
   );

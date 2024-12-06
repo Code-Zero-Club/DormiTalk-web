@@ -16,7 +16,7 @@ export default function LoginFormView() {
   };
 
   return (
-    <div className="w-full h-full flex px-5 pt-32 pb-9 bg-zinc-50 dark:bg-zinc-950 flex-col justify-between items-center">
+    <div className="w-full h-full flex flex-col justify-between items-center px-5 pt-32 pb-9">
       <div className="flex flex-col justify-center items-center gap-1">
         <Logo
           width={64}
@@ -30,7 +30,7 @@ export default function LoginFormView() {
           미래형 기숙사 관리 시스템
         </p>
       </div>
-      <div className="w-full max-w-md flex flex-col justify-center items-center gap-6">
+      <div className="w-full flex flex-col justify-center items-center gap-6">
         <div className="w-full flex flex-col justify-center items-center gap-4">
           <LoginButton
             href="/api/auth/google"

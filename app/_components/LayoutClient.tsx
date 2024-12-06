@@ -21,12 +21,14 @@ export default function LayoutClient({
   );
 
   return (
-    <>
-      {!hideNavigation && <Header title="도미톡!" />}
-      <div className={`content-container ${hideNavigation ? "!p-0" : ""}`}>
-        {children}
+    <div className="flex justify-center bg-zinc-50 dark:bg-zinc-950">
+      <div className="w-full max-w-md h-screen relative">
+        {!hideNavigation && <Header title="도미톡!" />}
+        <div className={`content-container ${hideNavigation ? "!p-0" : ""}`}>
+          {children}
+        </div>
+        {!hideNavigation && <Nav />}
       </div>
-      {!hideNavigation && <Nav />}
-    </>
+    </div>
   );
 }

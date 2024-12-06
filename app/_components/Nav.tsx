@@ -34,7 +34,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon }) => {
 
 const Nav: React.FC = () => {
   return (
-    <nav className="nav h-16 bg-white dark:bg-black justify-between items-center inline-flex">
+    <nav className="absolute bottom-0 left-0 right-0 h-16 bg-white dark:bg-black justify-between items-center inline-flex">
       <NavLink href="/" icon={Home2} />
       <NavLink href="/playlist" icon={Musicnote} />
       <NavLink href="/scheduler" icon={Timer1} />
