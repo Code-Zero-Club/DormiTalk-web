@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "@/app/_components/Header";
+import Nav from "@/app/_components/Nav";
 
 const pretendard = localFont({
   src: "../public/fonts/PretendardVariable.woff2",
@@ -40,7 +42,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr" className={`${pretendard.variable}`}>
-      <body className={pretendard.className}>{children}</body>
+      <body className={pretendard.className}>
+        <Header title="도미톡!" />
+        <div className="content-container">{children}</div>
+        <Nav />
+      </body>
     </html>
   );
 }
