@@ -8,6 +8,13 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'cataas.com',
+      }
+    ]
+  },
 };
 
 export default nextConfig;
