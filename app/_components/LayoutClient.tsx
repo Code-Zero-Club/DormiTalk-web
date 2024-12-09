@@ -21,10 +21,22 @@ export default function LayoutClient({
     pathname as NavigationRoutes
   );
 
+  let headerTitle = "도미톡!";
+
+  if (pathname === "/") {
+    headerTitle = "홈";
+  } else if (pathname === "/playlist") {
+    headerTitle = "플레이리스트";
+  } else if (pathname === "/scheduler") {
+    headerTitle = "스케줄러";
+  } else if (pathname === "/setting") {
+    headerTitle = "설정";
+  }
+
   return (
     <div className="min-h-screen flex justify-center bg-zinc-50 dark:bg-zinc-950">
       <div className="w-full max-w-md relative flex flex-col h-screen">
-        {!hideNavigation && <Header title="도미톡!" />}
+        {!hideNavigation && <Header title={headerTitle} />}
         <div
           className={`flex-1 overflow-y-auto ${
             hideNavigation ? "" : "pt-[60px] pb-16"
