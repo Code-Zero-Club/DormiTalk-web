@@ -36,4 +36,4 @@ jobs:
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
-          create-target-branch: true
+          create-target-branch-if-needed: true
