@@ -13,27 +13,32 @@ jobs:
       actions: read
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+        with:
+          path: source-repo
+
+      - name: Checkout destination repository
+        uses: actions/checkout@v2
+        with:
+          repository: DOS0313/codezero-deploy
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          path: destination-repo
 
       - name: Install mustache (to update the date)
         run: apk add ruby && gem install mustache
 
-      - name: Setup directory structure and copy files
+      - name: Update repository folder
         run: |
-          mkdir -p output/${{ github.event.repository.name }}
-          cp -R * output/${{ github.event.repository.name }}/ 2>/dev/null || true
-          rm -rf output/${{ github.event.repository.name }}/output || true
+          mkdir -p destination-repo/${{ github.event.repository.name }}
+          rm -rf destination-repo/${{ github.event.repository.name }}/*
+          cp -R source-repo/* destination-repo/${{ github.event.repository.name }}/ 2>/dev/null || true
 
-      - name: Pushes to another repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: "output"
-          destination-github-username: DOS0313
-          destination-repository-name: codezero-deploy
-          user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
-          create-target-branch-if-needed: true
+      - name: Commit and push changes
+        run: |
+          cd destination-repo
+          git config --global user.email "${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "${{ github.event.repository.name }}: ${{ github.event.commits[0].message }}"
+          git push
