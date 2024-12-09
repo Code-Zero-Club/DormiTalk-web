@@ -1,7 +1,9 @@
+import PlaylistContentView from "./_view/PlaylistContentView";
+
 export default function Playlist() {
   return (
-    <div>
-      <div>기상송 플레이리스트</div>
-    </div>
+    <main className="h-screen flex flex-col justify-between">
+      <PlaylistContentView />
+    </main>
   );
 }

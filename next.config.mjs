@@ -15,7 +15,10 @@ const nextConfig = {
     remotePatterns: [
       {
         hostname: 'cataas.com',
-      }
+      },
+      {
+        hostname: 'i.ytimg.com',
+      },
     ]
   },
 };
