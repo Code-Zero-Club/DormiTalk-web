@@ -32,11 +32,20 @@
   bottom: 0;
   width: 100%;
   z-index: 1000;
-  height: 60px; /* Adjust based on actual nav height */
+  height: 60px;
 }
 
 .content-container {
-  padding-top: 60px; /* Match header height */
-  padding-bottom: 64px; /* Match nav height */
+  padding-top: 60px;
+  padding-bottom: 64px;
   height: 100%;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
