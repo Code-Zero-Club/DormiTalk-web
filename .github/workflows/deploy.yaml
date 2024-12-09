@@ -20,9 +20,9 @@ jobs:
 
       - name: Setup directory structure and copy files
         run: |
-          mkdir -p output/team-repository-name
-          cp -R * output/team-repository-name/ 2>/dev/null || true
-          rm -rf output/team-repository-name/output || true
+          mkdir -p output/${{ github.event.repository.name }}
+          cp -R * output/${{ github.event.repository.name }}/ 2>/dev/null || true
+          rm -rf output/${{ github.event.repository.name }}/output || true
 
       - name: Pushes to another repository
         id: push_directory
