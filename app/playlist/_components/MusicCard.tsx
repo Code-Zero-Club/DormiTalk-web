@@ -20,8 +20,8 @@ export default function MusicCard({
       />
       <Image
         src={thumbnail}
-        width={48}
-        height={48}
+        width={128}
+        height={128}
         alt="thumbnail"
         className="size-12 rounded-md object-cover"
       />
