@@ -8,19 +8,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: pandoc/latex
+    permissions:
+      contents: write
+      actions: read
+
     steps:
       - uses: actions/checkout@v2
 
       - name: Install mustache (to update the date)
         run: apk add ruby && gem install mustache
 
-      - name: creates output
-        run: sh ./build.sh
-
-      - name: Create target directory structure
+      - name: Setup directory structure and copy files
         run: |
-          mkdir -p output/your-folder-name
-          mv output/* output/your-folder-name/ 2>/dev/null || true
+          mkdir -p output/team-repository-name
+          cp -R * output/team-repository-name/ 2>/dev/null || true
+          rm -rf output/team-repository-name/output || true
 
       - name: Pushes to another repository
         id: push_directory
@@ -34,6 +36,3 @@ jobs:
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
-
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
