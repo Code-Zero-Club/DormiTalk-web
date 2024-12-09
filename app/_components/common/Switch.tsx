@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
-
-interface ToggleProps {
-  initialValue?: boolean;
+interface SwitchProps {
+  value: boolean;
   onChange?: (checked: boolean) => void;
   size?: "small" | "medium" | "large";
   disabled?: boolean;
@@ -11,20 +9,15 @@ interface ToggleProps {
 }
 
 export default function Switch({
-  initialValue = false,
+  value,
   onChange,
   size = "medium",
   disabled = false,
   label,
-}: ToggleProps) {
-  const [isChecked, setIsChecked] = useState(initialValue);
-
+}: SwitchProps) {
   const handleToggle = () => {
     if (disabled) return;
-
-    const newValue = !isChecked;
-    setIsChecked(newValue);
-    onChange?.(newValue);
+    onChange?.(!value);
   };
 
   const sizes = {
@@ -50,19 +43,19 @@ export default function Switch({
   return (
     <label className="inline-flex items-center gap-2">
       {label && (
-        <span className="text-sm text-zinc-900 dark:text-zinc-100">
+        <span className="text-sm text-zinc-900 dark:text-zinc-100 dark-transition">
           {label}
         </span>
       )}
       <button
         role="switch"
-        aria-checked={isChecked}
+        aria-checked={value}
         onClick={handleToggle}
         className={`
-          relative rounded-full transition-colors duration-300 ease-in-out
+          relative rounded-full dark-transition
           ${selectedSize.toggle}
           ${
-            isChecked
+            value
               ? "bg-zinc-900 dark:bg-zinc-100"
               : "bg-zinc-200 dark:bg-zinc-800"
           }
@@ -73,10 +66,10 @@ export default function Switch({
         <span
           className={`
             absolute top-0.5 left-0.5
-            rounded-full bg-white dark:bg-black
+            rounded-full bg-white dark:bg-black dark-transition
             transition-transform duration-300 ease-in-out
             ${selectedSize.circle}
-            ${isChecked ? selectedSize.translate : "translate-x-0"}
+            ${value ? selectedSize.translate : "translate-x-0"}
           `}
         />
       </button>
