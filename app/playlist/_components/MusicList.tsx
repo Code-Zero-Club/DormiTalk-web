@@ -8,6 +8,46 @@ export default function MusicList() {
         title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
         playtime="2:53"
       />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
+      <MusicCard
+        thumbnail="https://i.ytimg.com/vi/ekr2nIex040/default.jpg"
+        title="ROSÉ & Bruno Mars - APT. (Official Music Video)"
+        playtime="2:53"
+      />
     </div>
   );
 }

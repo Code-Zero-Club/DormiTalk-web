@@ -1,7 +1,9 @@
+import SchedulerContentView from "./_view/SchedulerContentView";
+
 export default function Scheduler() {
   return (
-    <div>
-      <div>스케쥴러!</div>
-    </div>
+    <main className="">
+      <SchedulerContentView />
+    </main>
   );
 }
