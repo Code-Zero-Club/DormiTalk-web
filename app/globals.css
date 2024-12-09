@@ -27,3 +27,13 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+:root {
+  --transition-duration: 0.3s;
+}
+
+* {
+  transition: background-color var(--transition-duration), 
+              border-color var(--transition-duration), 
+              color var(--transition-duration);
+}
