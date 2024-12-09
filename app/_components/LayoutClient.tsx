@@ -34,7 +34,7 @@ export default function LayoutClient({
   }
 
   return (
-    <div className="min-h-screen flex justify-center bg-zinc-50 dark:bg-zinc-950">
+    <div className="flex justify-center bg-zinc-50 dark:bg-zinc-950">
       <div className="w-full max-w-md relative flex flex-col h-screen">
         {!hideNavigation && <Header title={headerTitle} />}
         <div
