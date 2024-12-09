@@ -19,28 +19,6 @@
   }
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  height: 60px; /* Adjust based on actual header height */
-}
-
-.nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 1000;
-  height: 60px;
-}
-
-.content-container {
-  padding-top: 60px;
-  padding-bottom: 64px;
-  height: 100%;
-}
-
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;

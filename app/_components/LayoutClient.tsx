@@ -1,3 +1,4 @@
+// app/_components/LayoutClient.tsx
 "use client";
 
 import { usePathname } from "next/navigation";
@@ -21,10 +22,14 @@ export default function LayoutClient({
   );
 
   return (
-    <div className="flex justify-center bg-zinc-50 dark:bg-zinc-950">
-      <div className="w-full max-w-md h-screen relative">
+    <div className="min-h-screen flex justify-center bg-zinc-50 dark:bg-zinc-950">
+      <div className="w-full max-w-md relative flex flex-col h-screen">
         {!hideNavigation && <Header title="도미톡!" />}
-        <div className={`content-container ${hideNavigation ? "!p-0" : ""}`}>
+        <div
+          className={`flex-1 overflow-y-auto ${
+            hideNavigation ? "" : "pt-[60px] pb-16"
+          }`}
+        >
           {children}
         </div>
         {!hideNavigation && <Nav />}
