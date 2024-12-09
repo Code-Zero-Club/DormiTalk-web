@@ -8,10 +8,18 @@ interface InfoRowProps {
 function InfoRow({ label, value }: InfoRowProps) {
   return (
     <div className="w-full flex flex-row justify-between">
-      <p className="text-zinc-50 text-base">{label}</p>
-      <p className="text-zinc-400 text-base">{value}</p>
+      <p className="text-zinc-950 dark:text-zinc-50 text-base font-medium">
+        {label}
+      </p>
+      <p className="text-zinc-600 dark:text-zinc-400 text-base font-normal">
+        {value}
+      </p>
     </div>
   );
+}
+
+function Separator() {
+  return <div className="w-full h-px bg-zinc-200 dark:bg-zinc-800" />;
 }
 
 export default function AppInfo() {
@@ -24,13 +32,13 @@ export default function AppInfo() {
       className="flex-col justify-start items-center gap-3"
     >
       <InfoRow label="서비스명" value="DormiTalk-Web" />
-      <div className="w-full h-px bg-zinc-800" />
+      <Separator />
       <InfoRow label="Front-end 개발" value="김태현" />
       <InfoRow label="Back-end 개발" value="김태현, 이기찬" />
       <InfoRow label="Client 개발" value="김태현" />
       <InfoRow label="UI/UX 디자인" value="김태현, 이종현" />
-      <div className="w-full h-px bg-zinc-800" />
-      <InfoRow label="빌드 버전" value={buildTime} />
+      <Separator />
+      <InfoRow label="빌드 시간" value={buildTime} />
     </SettingSection>
   );
 }

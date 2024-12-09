@@ -16,8 +16,12 @@ export default function AccountInfo() {
       />
       <div className="w-full flex flex-row justify-between items-center">
         <div className="flex flex-col justify-center items-start">
-          <p className="text-zinc-50 text-base font-semibold">닉네임</p>
-          <p className="text-zinc-400 text-sm font-normal">어드민 계정</p>
+          <p className="text-zinc-950 dark:text-zinc-50 text-base font-semibold">
+            닉네임
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm font-normal">
+            어드민 계정
+          </p>
         </div>
         <p className="text-red-500 text-sm font-semibold hover:underline">
           로그아웃
