@@ -1,11 +1,22 @@
-"use client";
+import { ChangeEvent, useState } from "react";
 
-import { useState, ChangeEvent } from "react";
+interface StartTimeSelectorProps {
+  hours: string;
+  minutes: string;
+  isAM: boolean;
+  onHoursChange: (hours: string) => void;
+  onMinutesChange: (minutes: string) => void;
+  onAMPMChange: (isAM: boolean) => void;
+}
 
-export default function StartTimeSelector() {
-  const [hours, setHours] = useState("8");
-  const [minutes, setMinutes] = useState("00");
-  const [isAM, setIsAM] = useState(true);
+export default function StartTimeSelector({
+  hours,
+  minutes,
+  isAM,
+  onHoursChange,
+  onMinutesChange,
+  onAMPMChange,
+}: StartTimeSelectorProps) {
   const [isEditingHours, setIsEditingHours] = useState(false);
   const [isEditingMinutes, setIsEditingMinutes] = useState(false);
 
@@ -14,19 +25,19 @@ export default function StartTimeSelector() {
     const numValue = parseInt(value);
 
     if (value === "") {
-      setHours("");
+      onHoursChange("");
       return;
     }
 
     if (numValue >= 0 && numValue <= 12) {
-      setHours(numValue.toString());
+      onHoursChange(numValue.toString());
     }
   };
 
   const handleHoursBlur = () => {
     setIsEditingHours(false);
     if (hours === "") {
-      setHours("8");
+      onHoursChange("8");
     }
   };
 
@@ -35,31 +46,27 @@ export default function StartTimeSelector() {
     const numValue = parseInt(value);
 
     if (value === "") {
-      setMinutes("");
+      onMinutesChange("");
       return;
     }
 
     if (numValue >= 0 && numValue < 60) {
-      setMinutes(numValue.toString().padStart(2, "0"));
+      onMinutesChange(numValue.toString().padStart(2, "0"));
     }
   };
 
   const handleMinutesBlur = () => {
     setIsEditingMinutes(false);
     if (minutes === "") {
-      setMinutes("00");
+      onMinutesChange("00");
     }
-  };
-
-  const toggleAmPm = () => {
-    setIsAM((prev) => !prev);
   };
 
   return (
     <div className="flex flex-row w-full h-40 bg-zinc-100 dark:bg-zinc-900 justify-center items-center gap-9">
       <p
         className="logo-font text-zinc-950 dark:text-zinc-50 text-4xl cursor-pointer hover:opacity-80"
-        onClick={toggleAmPm}
+        onClick={() => onAMPMChange(!isAM)}
       >
         {isAM ? "오전" : "오후"}
       </p>

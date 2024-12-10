@@ -4,9 +4,13 @@ import { useState, ChangeEvent, useEffect } from "react";
 
 interface PlayTimeInputProps {
   playTime: string;
+  onPlayTimeChange: (time: string) => void;
 }
 
-export default function PlayTimeInput({ playTime }: PlayTimeInputProps) {
+export default function PlayTimeInput({
+  playTime,
+  onPlayTimeChange,
+}: PlayTimeInputProps) {
   const [value, setValue] = useState<string>("");
 
   useEffect(() => {
@@ -23,6 +27,7 @@ export default function PlayTimeInput({ playTime }: PlayTimeInputProps) {
     }
 
     setValue(newValue);
+    onPlayTimeChange(newValue); // 상위 컴포넌트로 변경된 값 전달
   };
 
   return (

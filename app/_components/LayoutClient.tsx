@@ -1,8 +1,8 @@
-// app/_components/LayoutClient.tsx
 "use client";
 
 import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
+import { Toaster } from "react-hot-toast";
 import Header from "./Header";
 import Nav from "./Nav";
 import SaveDrawer from "./SaveDrawer";
@@ -40,6 +40,33 @@ export default function LayoutClient({
   return (
     <div className="flex justify-center bg-zinc-50 dark:bg-zinc-950">
       <div className="w-full max-w-md relative flex flex-col h-screen">
+        <Toaster
+          position="bottom-center"
+          reverseOrder={false}
+          gutter={8}
+          containerStyle={{
+            bottom: 150,
+          }}
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#363636",
+              color: "#fff",
+            },
+            success: {
+              iconTheme: {
+                primary: "#4ade80",
+                secondary: "#fff",
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#fff",
+              },
+            },
+          }}
+        />
         {!hideNavigation && <Header title={headerTitle} />}
         <div
           className={`flex-1 overflow-y-auto ${

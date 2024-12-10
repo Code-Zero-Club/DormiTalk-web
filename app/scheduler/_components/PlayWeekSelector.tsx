@@ -5,9 +5,13 @@ import WeekButton from "./WeekButton";
 
 interface PlayWeekSelectorProps {
   dayOfWeek: string[];
+  onDayOfWeekChange: (days: string[]) => void;
 }
 
-export default function PlayWeekSelector({ dayOfWeek }: PlayWeekSelectorProps) {
+export default function PlayWeekSelector({
+  dayOfWeek,
+  onDayOfWeekChange,
+}: PlayWeekSelectorProps) {
   const [activeWeeks, setActiveWeeks] = useState<string[]>(dayOfWeek);
 
   useEffect(() => {
@@ -16,11 +20,12 @@ export default function PlayWeekSelector({ dayOfWeek }: PlayWeekSelectorProps) {
 
   const toggleWeek = (week: string) => {
     setActiveWeeks((prev) => {
-      if (prev.includes(week)) {
-        return prev.filter((day) => day !== week);
-      } else {
-        return [...prev, week];
-      }
+      const newWeeks = prev.includes(week)
+        ? prev.filter((day) => day !== week)
+        : [...prev, week];
+
+      onDayOfWeekChange(newWeeks); // 상위 컴포넌트로 변경된 값 전달
+      return newWeeks;
     });
   };
 
