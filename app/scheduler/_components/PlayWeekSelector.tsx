@@ -1,24 +1,43 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import WeekButton from "./WeekButton";
 
-interface PlayTimeInputProps {
+interface PlayWeekSelectorProps {
   dayOfWeek: string[];
 }
 
-export default function PlayWeekSelector({ dayOfWeek }: PlayTimeInputProps) {
-  console.log(dayOfWeek);
+export default function PlayWeekSelector({ dayOfWeek }: PlayWeekSelectorProps) {
+  const [activeWeeks, setActiveWeeks] = useState<string[]>(dayOfWeek);
+
+  useEffect(() => {
+    setActiveWeeks(dayOfWeek);
+  }, [dayOfWeek]);
+
+  const toggleWeek = (week: string) => {
+    setActiveWeeks((prev) => {
+      if (prev.includes(week)) {
+        return prev.filter((day) => day !== week);
+      } else {
+        return [...prev, week];
+      }
+    });
+  };
+
   return (
     <div className="w-full flex flex-col gap-4">
       <p className="text-zinc-950 dark:text-zinc-50 text-sm font-bold">
         재생 요일
       </p>
       <div className="w-full flex flex-row justify-between items-center">
-        <WeekButton week="일" style="text-red-500" />
-        <WeekButton week="월" style="text-zinc-900 dark:text-zinc-100" />
-        <WeekButton week="화" style="text-zinc-900 dark:text-zinc-100" />
-        <WeekButton week="수" style="text-zinc-900 dark:text-zinc-100" />
-        <WeekButton week="목" style="text-zinc-900 dark:text-zinc-100" />
-        <WeekButton week="금" style="text-zinc-900 dark:text-zinc-100" />
-        <WeekButton week="토" style="text-blue-500" />
+        {["일", "월", "화", "수", "목", "금", "토"].map((week) => (
+          <WeekButton
+            key={week}
+            week={week}
+            isActive={activeWeeks.includes(week)}
+            onClick={() => toggleWeek(week)}
+          />
+        ))}
       </div>
     </div>
   );
