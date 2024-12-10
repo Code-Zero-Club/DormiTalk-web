@@ -7,6 +7,7 @@ export interface Song {
   id: number;
   title: string;
   youtube_id: string;
+  play_time: string;
   created_at: string;
 }
 
