@@ -36,7 +36,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon: Icon, ariaLabel }) => {
 
 const Nav: React.FC = () => {
   return (
-    <nav className="absolute bottom-0 left-0 right-0 h-16 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800">
+    <nav className="absolute bottom-0 left-0 right-0 h-16 bg-white dark:bg-black">
       <div className="max-w-md mx-auto h-full flex justify-between items-center">
         <NavLink href="/" icon={Home2} />
         <NavLink href="/playlist" icon={Musicnote} />

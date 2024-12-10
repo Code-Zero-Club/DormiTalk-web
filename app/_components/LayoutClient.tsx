@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
 import Header from "./Header";
 import Nav from "./Nav";
+import SaveDrawer from "./SaveDrawer";
 
 const NO_NAVIGATION_ROUTES = ["/login"] as const;
 type NavigationRoutes = (typeof NO_NAVIGATION_ROUTES)[number];
@@ -20,6 +21,8 @@ export default function LayoutClient({
   const hideNavigation = NO_NAVIGATION_ROUTES.includes(
     pathname as NavigationRoutes
   );
+
+  const hideSaveButton = pathname === "/" || pathname === "/setting";
 
   let headerTitle = "도미톡!";
 
@@ -44,6 +47,7 @@ export default function LayoutClient({
         >
           {children}
         </div>
+        {!hideSaveButton && <SaveDrawer />}
         {!hideNavigation && <Nav />}
       </div>
     </div>
