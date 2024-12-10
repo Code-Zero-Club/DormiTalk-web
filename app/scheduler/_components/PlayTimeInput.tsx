@@ -27,7 +27,7 @@ export default function PlayTimeInput({
     }
 
     setValue(newValue);
-    onPlayTimeChange(newValue); // 상위 컴포넌트로 변경된 값 전달
+    onPlayTimeChange(newValue);
   };
 
   return (
