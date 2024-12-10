@@ -24,7 +24,7 @@ export default function PlayWeekSelector({
         ? prev.filter((day) => day !== week)
         : [...prev, week];
 
-      onDayOfWeekChange(newWeeks); // 상위 컴포넌트로 변경된 값 전달
+      onDayOfWeekChange(newWeeks);
       return newWeeks;
     });
   };

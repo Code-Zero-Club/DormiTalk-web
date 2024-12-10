@@ -12,7 +12,8 @@ export default function SaveDrawer() {
           onClick={() => saveAction?.()}
           disabled={!saveAction}
           className="w-full h-12 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 font-bold rounded-xl
-            disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled:opacity-50 disabled:cursor-not-allowed
+            transition-opacity"
         >
           저장
         </button>

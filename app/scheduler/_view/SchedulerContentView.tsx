@@ -34,7 +34,6 @@ export default function SchedulerContentView() {
 
   const { setSaveAction } = useSaveDrawer();
 
-  // 인증 토큰 설정
   useEffect(() => {
     AuthService.setAuthToken(
       "75a6eac0548bb6c6436874e23dbf0b01899ed256f21dcacb5e325b570137ab39"
@@ -75,7 +74,6 @@ export default function SchedulerContentView() {
       await SchedulerService.update(scheduler[0].id, updateData);
       toast.success("성공적으로 저장되었습니다!");
 
-      // 저장 후 초기 상태 업데이트
       setInitialState({
         hours,
         minutes,
