@@ -51,10 +51,10 @@ export default function KeyLoginModal({ isOpen, onClose }: KeyLoginModalProps) {
     <div
       className={`fixed inset-0 bg-zinc-50 dark:bg-zinc-950 z-50 transition-opacity duration-300 ${
         isAnimatingIn ? "opacity-100" : "opacity-0"
-      }`}
+      } flex justify-center items-center`}
     >
       <div
-        className={`w-full h-full flex flex-col transition-transform duration-300 ease-out transform ${
+        className={`w-full max-w-md h-full flex flex-col transition-transform duration-300 ease-out transform ${
           isAnimatingIn ? "translate-x-0" : "translate-x-full"
         }`}
       >

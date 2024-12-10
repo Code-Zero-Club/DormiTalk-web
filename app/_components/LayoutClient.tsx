@@ -22,7 +22,8 @@ export default function LayoutClient({
     pathname as NavigationRoutes
   );
 
-  const hideSaveButton = pathname === "/" || pathname === "/setting";
+  const hideSaveButton =
+    pathname === "/" || pathname === "/setting" || pathname === "/login";
 
   let headerTitle = "도미톡!";
 
