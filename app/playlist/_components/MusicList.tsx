@@ -57,6 +57,7 @@ export default function MusicList() {
           thumbnail={`https://i.ytimg.com/vi/${song.youtube_id}/mqdefault.jpg`}
           title={song.title}
           playtime={song.play_time}
+          youtubeId={song.youtube_id}
         />
       ))}
     </div>
