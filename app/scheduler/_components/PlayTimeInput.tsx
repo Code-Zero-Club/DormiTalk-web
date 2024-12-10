@@ -1,9 +1,19 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
-export default function PlayTimeInput() {
+interface PlayTimeInputProps {
+  playTime: string;
+}
+
+export default function PlayTimeInput({ playTime }: PlayTimeInputProps) {
   const [value, setValue] = useState<string>("");
+
+  useEffect(() => {
+    if (playTime) {
+      setValue(playTime);
+    }
+  }, [playTime]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value.replace(/[^0-9]/g, "");
@@ -22,7 +32,7 @@ export default function PlayTimeInput() {
       </p>
       <div className="h-12 px-4 flex flex-row bg-zinc-100 dark:bg-zinc-900 rounded-xl justify-between items-center">
         <input
-          className="bg-transparent text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 w-full outline-none"
+          className="bg-transparent text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 w-full outline-none"
           placeholder="180"
           value={value}
           onChange={handleChange}
