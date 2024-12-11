@@ -4,15 +4,20 @@ interface AddMusicCardProps {
   thumbnail: string;
   title: string;
   playtime: string;
+  onClick?: () => void;
 }
 
 export default function AddMusicCard({
   thumbnail,
   title,
   playtime,
+  onClick,
 }: AddMusicCardProps) {
   return (
-    <div className="flex flex-row items-center p-3 gap-3">
+    <div
+      className="flex flex-row items-center p-3 gap-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 cursor-pointer transition-colors"
+      onClick={onClick}
+    >
       <Image
         src={thumbnail}
         width={128}

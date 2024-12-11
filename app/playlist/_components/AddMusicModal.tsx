@@ -68,6 +68,10 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
               playtime: durationResponse.data,
             };
           } catch (err) {
+            console.error(
+              `Failed to get video duration for video ID ${video.videoId}:`,
+              err
+            );
             return video;
           }
         })
@@ -75,7 +79,7 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
 
       setSearchResults(videosWithDuration);
     } catch (err) {
-      setError("검색 중 오류가 발생했습니다.");
+      setError("검색 중 오류가 발생했습니다: " + err);
     } finally {
       setIsSearching(false);
     }
@@ -129,7 +133,7 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
 
             {error && <div className="text-red-500 text-sm px-2">{error}</div>}
 
-            <div className="w-full flex flex-col bg-zinc-100 dark:bg-zinc-900 rounded-xl">
+            <div className="w-full flex flex-col bg-zinc-100 dark:bg-zinc-900 rounded-xl overflow-hidden">
               {isSearching ? (
                 <div className="p-4 text-zinc-500 dark:text-zinc-400 text-center">
                   검색 중...
@@ -140,7 +144,7 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
                     key={video.videoId}
                     thumbnail={video.thumbnail}
                     title={video.title}
-                    playtime={video.playtime}
+                    playtime={video.playtime || "N/A"}
                     onClick={() => handleSelectVideo(video)}
                   />
                 ))
