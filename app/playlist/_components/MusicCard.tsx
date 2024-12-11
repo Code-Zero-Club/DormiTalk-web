@@ -28,10 +28,6 @@ export default function MusicCard({
 
   const handleDelete = async () => {
     try {
-      AuthService.setAuthToken(
-        "0b2c0e20e16d77eca0d962bc822aa7fab91dcccbb1afd9daea1286d04624939b"
-      );
-
       await SongService.delete(id);
       toast.success("성공적으로 삭제되었습니다!");
       onSuccess?.();

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft } from "iconsax-react";
+import { AuthService } from "@/app/services/auth.service";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface KeyLoginModalProps {
   isOpen: boolean;
@@ -7,10 +10,12 @@ interface KeyLoginModalProps {
 }
 
 export default function KeyLoginModal({ isOpen, onClose }: KeyLoginModalProps) {
+  const router = useRouter();
   const [key, setKey] = useState("");
   const [isRendered, setIsRendered] = useState(false);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -18,30 +23,34 @@ export default function KeyLoginModal({ isOpen, onClose }: KeyLoginModalProps) {
       setTimeout(() => setIsAnimatingIn(true), 50);
     } else {
       setIsAnimatingIn(false);
-      const timer = setTimeout(() => setIsRendered(false), 300);
+      const timer = setTimeout(() => {
+        setIsRendered(false);
+        setKey("");
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ key }),
-      });
+    if (!key.trim() || isLoading) return;
 
-      if (response.ok) {
-        console.log("Login successful");
-        onClose();
-      } else {
-        console.error("Login failed");
+    try {
+      setIsLoading(true);
+      const response = await AuthService.checkKey(key);
+
+      if (response.error) {
+        throw new Error(response.error);
       }
+
+      toast.success("로그인에 성공했습니다!");
+      onClose();
+      router.push("/");
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Failed to login:", error);
+      toast.error("잘못된 키입니다. 다시 확인해주세요.");
+    } finally {
+      setIsLoading(false);
     }
   };
 

@@ -6,7 +6,6 @@ import {
   VideoSearchResult,
 } from "@/app/services/youtube.service";
 import { SongService } from "@/app/services/song.service";
-import { AuthService } from "@/app/services/auth.service";
 import { toast } from "react-hot-toast";
 
 interface AddMusicModalProps {
@@ -93,10 +92,6 @@ export default function AddMusicModal({
 
   const handleSelectVideo = async (video: VideoWithDuration) => {
     try {
-      AuthService.setAuthToken(
-        "0b2c0e20e16d77eca0d962bc822aa7fab91dcccbb1afd9daea1286d04624939b"
-      );
-
       const response = await SongService.create({
         title: video.title,
         youtube_id: video.videoId,

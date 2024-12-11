@@ -7,7 +7,6 @@ import Options from "../_components/Options";
 import SchedulerSkeleton from "../_components/SchedulerSkeleton";
 import SchedulerError from "../_components/SchedulerError";
 import { SchedulerService } from "@/app/services/scheduler.service";
-import { AuthService } from "@/app/services/auth.service";
 import { Scheduler } from "@/app/types/api";
 import { useSaveDrawer } from "@/app/_hooks/useSaveDrawer";
 
@@ -33,12 +32,6 @@ export default function SchedulerContentView() {
   const [initialState, setInitialState] = useState<SchedulerState | null>(null);
 
   const { setSaveAction } = useSaveDrawer();
-
-  useEffect(() => {
-    AuthService.setAuthToken(
-      "75a6eac0548bb6c6436874e23dbf0b01899ed256f21dcacb5e325b570137ab39"
-    );
-  }, []);
 
   const arrayEquals = (a: string[], b: string[]) => {
     return JSON.stringify([...a].sort()) === JSON.stringify([...b].sort());

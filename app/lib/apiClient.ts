@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 import { ApiResponse } from '../types/api';
+import Cookies from 'js-cookie';
 
 interface ErrorResponseData {
   error?: string;
@@ -19,6 +20,11 @@ class ApiClient {
         'Content-Type': 'application/json',
       },
     });
+
+    const savedToken = Cookies.get('auth_token');
+    if (savedToken) {
+      this.setAuthToken(savedToken);
+    }
   }
 
   setAuthToken(token: string) {

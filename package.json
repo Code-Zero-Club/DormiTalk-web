@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
     "iconsax-react": "^0.0.8",
+    "js-cookie": "^3.0.5",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
