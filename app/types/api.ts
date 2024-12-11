@@ -15,6 +15,6 @@ export interface Scheduler {
   id: number;
   start_time: string;  // HH:MM:SS 형식
   day_of_week: string[];
-  play_time: string;  // HH:MM:SS 형식
+  play_time: string;
   last_modified: string;
 }
