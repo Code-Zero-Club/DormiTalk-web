@@ -59,10 +59,12 @@ export default function MusicList({ onRefresh }: MusicListProps) {
       {songs.map((song) => (
         <MusicCard
           key={song.id}
+          id={song.id}
           thumbnail={`https://i.ytimg.com/vi/${song.youtube_id}/mqdefault.jpg`}
           title={song.title}
           playtime={song.play_time}
           youtubeId={song.youtube_id}
+          onSuccess={fetchSongs}
         />
       ))}
     </div>

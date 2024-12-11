@@ -1,26 +1,44 @@
 import Image from "next/image";
 import { HambergerMenu, More, Link1, Trash } from "iconsax-react";
 import Popover from "@/app/_components/common/PopOver";
+import { SongService } from "@/app/services/song.service";
+import { toast } from "react-hot-toast";
+import { AuthService } from "@/app/services/auth.service";
 
 interface MusicCardProps {
+  id: number;
   thumbnail: string;
   title: string;
   playtime: string;
   youtubeId: string;
+  onSuccess?: () => void;
 }
 
 export default function MusicCard({
+  id,
   thumbnail,
   title,
   playtime,
   youtubeId,
+  onSuccess,
 }: MusicCardProps) {
   const handleOpenYoutube = () => {
     window.open(`https://www.youtube.com/watch?v=${youtubeId}`, "_blank");
   };
 
-  const handleDelete = () => {
-    alert("삭제되었습니다.");
+  const handleDelete = async () => {
+    try {
+      AuthService.setAuthToken(
+        "0b2c0e20e16d77eca0d962bc822aa7fab91dcccbb1afd9daea1286d04624939b"
+      );
+
+      await SongService.delete(id);
+      toast.success("성공적으로 삭제되었습니다!");
+      onSuccess?.();
+    } catch (error) {
+      console.error("Failed to delete song:", error);
+      toast.error("노래를 삭제하는데 실패했습니다.");
+    }
   };
 
   return (
