@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import MusicCard from "./MusicCard";
 import MusicCardSkeleton from "./MusicCardSkeleton";
 import MusicCardError from "./MusicCardError";
@@ -8,28 +8,33 @@ import MusicCardEmpty from "./MusicCardEmpty";
 import { SongService } from "@/app/services/song.service";
 import { Song } from "@/app/types/api";
 
-export default function MusicList() {
+interface MusicListProps {
+  onRefresh?: () => void;
+}
+
+export default function MusicList({ onRefresh }: MusicListProps) {
   const [songs, setSongs] = useState<Song[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchSongs = async () => {
+  const fetchSongs = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
       const response = await SongService.getAll();
       setSongs(response.data);
+      onRefresh?.();
     } catch (error) {
       console.error("Failed to fetch songs:", error);
       setError("플레이리스트를 불러오는데 실패했습니다.");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [onRefresh]);
 
   useEffect(() => {
     fetchSongs();
-  }, []);
+  }, [fetchSongs]);
 
   if (error) {
     return <MusicCardError message={error} onRetry={fetchSongs} />;

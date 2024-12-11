@@ -5,17 +5,25 @@ import {
   YouTubeService,
   VideoSearchResult,
 } from "@/app/services/youtube.service";
+import { SongService } from "@/app/services/song.service";
+import { AuthService } from "@/app/services/auth.service";
+import { toast } from "react-hot-toast";
 
 interface AddMusicModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
 interface VideoWithDuration extends VideoSearchResult {
   playtime?: string;
 }
 
-export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
+export default function AddMusicModal({
+  isOpen,
+  onClose,
+  onSuccess,
+}: AddMusicModalProps) {
   const [isRendered, setIsRendered] = useState(false);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
   const [query, setQuery] = useState("");
@@ -53,10 +61,8 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
         return;
       }
 
-      // 검색 결과를 임시로 저장
       setSearchResults(response.data.videos);
 
-      // 각 비디오의 재생 시간 조회
       const videosWithDuration = await Promise.all(
         response.data.videos.map(async (video) => {
           try {
@@ -85,13 +91,29 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
     }
   };
 
-  const handleSelectVideo = (video: VideoWithDuration) => {
-    // 선택된 비디오 정보 처리
-    console.log({
-      title: video.title,
-      youtube_id: video.videoId,
-      play_time: video.playtime,
-    });
+  const handleSelectVideo = async (video: VideoWithDuration) => {
+    try {
+      AuthService.setAuthToken(
+        "0b2c0e20e16d77eca0d962bc822aa7fab91dcccbb1afd9daea1286d04624939b"
+      );
+
+      const response = await SongService.create({
+        title: video.title,
+        youtube_id: video.videoId,
+        play_time: video.playtime || "N/A",
+      });
+
+      if (response.error) {
+        throw new Error(response.error);
+      }
+
+      toast.success("성공적으로 저장되었습니다!");
+      onSuccess?.();
+      onClose();
+    } catch (err) {
+      console.error("Failed to add song to playlist:", err);
+      toast.error("음악을 추가하는데 실패했습니다. 다시 시도해 주세요.");
+    }
   };
 
   if (!isRendered) return null;

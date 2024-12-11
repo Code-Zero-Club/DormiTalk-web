@@ -4,6 +4,7 @@ import { apiClient } from '../lib/apiClient';
 interface CreateSongDto {
   title: string;
   youtube_id: string;
+  play_time: string;
 }
 
 export class SongService {
