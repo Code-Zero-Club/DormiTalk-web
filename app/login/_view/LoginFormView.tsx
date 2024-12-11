@@ -7,9 +7,14 @@ import KeyIcon from "@/public/icons/key.svg";
 import Logo from "@/public/images/Logo.svg";
 import LoginButton from "../_components/LoginButton";
 import KeyLoginModal from "../_components/KeyLoginModal";
+import { toast } from "react-hot-toast";
 
 export default function LoginFormView() {
   const [isKeyLoginModalOpen, setIsKeyLoginModalOpen] = useState(false);
+
+  const handleGoogleLoginClick = () => {
+    toast.error("구글 로그인은 아직 지원되지 않습니다.");
+  };
 
   const handleKeyLoginClick = () => {
     setIsKeyLoginModalOpen(true);
@@ -33,7 +38,7 @@ export default function LoginFormView() {
       <div className="w-full flex flex-col justify-center items-center gap-6">
         <div className="w-full flex flex-col justify-center items-center gap-4">
           <LoginButton
-            href="/api/auth/google"
+            onClick={handleGoogleLoginClick}
             icon={<GoogleIcon width={32} height={32} />}
             text="Google로 로그인"
           />
