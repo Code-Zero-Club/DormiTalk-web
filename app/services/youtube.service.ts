@@ -49,6 +49,12 @@ export class YouTubeService {
   private static readonly API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
   private static readonly API_BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
+  private static decodeHtmlEntities(text: string): string {
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = text;
+    return textArea.value;
+  }
+  
   static async search(
     query: string,
     pageToken?: string,
@@ -78,8 +84,8 @@ export class YouTubeService {
         data: {
           videos: response.data.items.map(item => ({
             videoId: item.id.videoId,
-            title: item.snippet.title,
-            channelTitle: item.snippet.channelTitle,
+            title: this.decodeHtmlEntities(item.snippet.title),
+            channelTitle: this.decodeHtmlEntities(item.snippet.channelTitle),
             thumbnail: item.snippet.thumbnails.medium.url,
             publishedAt: item.snippet.publishedAt,
           })),
